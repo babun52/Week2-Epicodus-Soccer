@@ -1,18 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
   <div class="container">
     <a class="navbar-brand" href="/">Ep:codus Soccer</a>
     <ul class="nav navbar-nav">
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
+      <li><a href="#">Foorwear</a></li>
+      <li><a href="#">Apparel</a></li>
     </ul>
     <div id="user_nav">
       <% if user_signed_in? %>
       Signed in as <%= current_user.email %> |
-      <button type="button" class="btn btn-default navbar-btn"><%= link_to "Edit Profile", edit_user_registration_path %></button>
-      <button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></button>
+      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Edit Profile", edit_user_registration_path %></button>
+      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></button>
       <% else %>
-      <button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button>
-      <button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign In", new_user_session_path %></button>
+      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button>
+      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign In", new_user_session_path %></button>
       <% end %>
     </div>
   </div>
