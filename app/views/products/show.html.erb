@@ -1,6 +1,18 @@
-<h1><%= @product.name %> </h1>
-<h6>$<%= @product.price %> </h6>
-<h4><%= @product.detail %> </h4>
-<%= image_tag @product.image %>
+<div class="container">
+  <%= image_tag @product.image %>
+  <h1><%= @product.name %> </h1>
+  <h6>$<%= @product.price %> </h6>
+  <h4><%= @product.detail %> </h4>
+  <br><br><br>
+  <h6>Reviews</h6>
+  <%= link_to "Please log in to write a review", new_product_review_path(@product) %>
+  <hr>
+  <% @product.reviews.each do |review| %>
+  <div class="well">
+    <p><%= review.review %></p>
+  </div>
+  <% end %>
+  <br>
+</div>
 
 <p><%= link_to "Return", products_path %></p>
