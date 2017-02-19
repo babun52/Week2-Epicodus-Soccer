@@ -37,8 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
-gem 'twitter-bootstrap-rails'
-gem 'devise-bootstrap-views'
+gem 'simple_form'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 group :development, :test do

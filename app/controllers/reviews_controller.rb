@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :admin, only: [:destroy]
+
   def new
     @product = Product.find(params[:product_id])
     @review = @product.reviews.new
@@ -7,6 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @review = @product.reviews.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
       redirect_to product_path(@product)
     else
@@ -14,8 +17,22 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:product_id])
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to product_path(@product)
+  end
+
   private
   def review_params
-    params.require(:review).permit(:review, :user_id)
+    params.require(:review).permit(:user_id, :product_id, :review)
+  end
+
+  def admin
+    unless current_user.admin == true
+      flash[:alert] = "NO"
+      redirect_to root_path
+    end
   end
 end

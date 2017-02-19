@@ -15,4 +15,6 @@
   <% end %>
 </div>
 
-<%= link_to "Add New Footwear", new_product_path %>
+<% if current_user.admin == true %>
+  <%= link_to "Add New Footwear", new_product_path %>
+<% end %>

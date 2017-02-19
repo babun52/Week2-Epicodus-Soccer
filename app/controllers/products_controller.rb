@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @products = Product.all
   end
@@ -8,11 +11,11 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = current_user.products.build
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.build(product_params)
     if @product.save
       redirect_to product_path(@product)
     else
@@ -42,5 +45,12 @@ class ProductsController < ApplicationController
   private
   def product_params
     params.require(:product).permit(:name, :price, :detail, :image)
+  end
+
+  def admin_user
+    unless current_user.admin == true
+      flash[:alert] = "NO."
+      redirect_to root_path
+    end
   end
 end

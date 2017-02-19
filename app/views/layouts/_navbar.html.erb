@@ -7,12 +7,12 @@
     </ul>
     <div id="user_nav">
       <% if user_signed_in? %>
-      Signed in as <%= current_user.email %> |
-      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Edit Profile", edit_user_registration_path %></button>
-      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></button>
+        Signed in as <%= current_user.email %> |
+        <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Edit Profile", edit_user_registration_path %></button>
+        <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></button>
       <% else %>
-      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button>
-      <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign In", new_user_session_path %></button>
+        <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button>
+        <button type="button" class="btn btn-inverse navbar-btn"><%= link_to "Sign In", new_user_session_path %></button>
       <% end %>
     </div>
   </div>
