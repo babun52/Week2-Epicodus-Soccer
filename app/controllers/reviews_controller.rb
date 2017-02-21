@@ -28,11 +28,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:user_id, :product_id, :review)
   end
-
-  def admin
-    unless current_user.admin == true
-      flash[:alert] = "NO"
-      redirect_to root_path
-    end
-  end
 end

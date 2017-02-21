@@ -1,18 +1,16 @@
-<h3>Footwear</h3>
-<div class="row">
-  <div class="col-xs-6 col-md-4">
-    <a href="#" class="thumbnail">
-      <%= image_tag("1.jpg") %>
-    </a>
+<div class="container">
+  <h1>Footwears</h1>
+  <% @products.each do |product| %>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="thumbnail">
+        <%= link_to image_tag(product.image), product_path(product) %>
+        <br>
+        <%= link_to product.name, product_path(product) %>
+        <br>
+        <p>$<%= product.price %></p>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-6 col-md-4">
-    <a href="#" class="thumbnail">
-      <%= image_tag("2.jpg") %>
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-4">
-    <a href="#" class="thumbnail">
-      <%= image_tag("3.jpg") %>
-    </a>
-  </div>
+  <% end %>
 </div>
