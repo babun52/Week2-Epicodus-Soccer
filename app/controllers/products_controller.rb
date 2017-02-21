@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:create, :edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -48,9 +47,6 @@ class ProductsController < ApplicationController
   end
 
   def admin_user
-    unless current_user.admin == true
-      flash[:alert] = "NO."
-      redirect_to root_path
-    end
+    @product = Product.find(params[:id])
   end
 end

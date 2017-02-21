@@ -1,7 +1,7 @@
 <%= render "layouts/errors", :object => @review %>
 
-<%= form_for [@product, @review] do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
+<%= simple_form_for [@product, @review] do |f| %>
+  <%= f.hidden_field :user_id %>
   <%= f.label :review %>
   <%= f.text_area :review %>
   <%= f.submit %>

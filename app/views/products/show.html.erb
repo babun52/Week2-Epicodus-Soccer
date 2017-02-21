@@ -3,9 +3,11 @@
   <h1><%= @product.name %> </h1>
   <h6>$<%= @product.price %> </h6>
   <h4><%= @product.detail %> </h4>
-  <% if current_user.admin == true %>
-    <%= link_to "Edit", edit_product_path(@product) %>
-    <%= link_to "Delete", product_path(@product), :data => {:confirm => "Are you sure?", method: "delete"} %>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <%= link_to "Edit", edit_product_path(@product) %>
+      <%= link_to "Delete", product_path(@product), :data => {:confirm => "Are you sure?", method: "delete"} %>
+    <% end %>
   <% end %>
   <br><br><br>
   <h6>Reviews</h6>
@@ -14,8 +16,10 @@
   <% @product.reviews.each do |review| %>
   <div class="well">
     <p><%= review.review %></p>
-    <% if current_user.admin == true %>
-      <%=link_to product_review_path(@product, review), method: :delete, data: {confirm: "Are you sure?"} do%><span class="glyphicon glyphicon-remove delete-comment"></span>
+    <% if current_user %>
+      <% if current_user.id == review.user_id || current_user.admin? %>
+        <%=link_to product_review_path(@product, review), method: :delete, data: {confirm: "Are you sure?"} do%><span class="glyphicon glyphicon-remove delete-comment"></span>
+        <% end %>
       <% end %>
     <% end %>
   </div>
