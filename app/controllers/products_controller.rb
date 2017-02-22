@@ -47,6 +47,9 @@ class ProductsController < ApplicationController
   end
 
   def admin_user
-    @product = Product.find(params[:id])
+    unless current_user.admin == true
+      flash[:alert] = "NO."
+      redirect_to root_path
+    end
   end
 end

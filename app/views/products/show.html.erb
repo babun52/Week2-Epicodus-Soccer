@@ -11,7 +11,11 @@
   <% end %>
   <br><br><br>
   <h6>Reviews</h6>
-  <%= link_to "Please log in to write a review", new_product_review_path(@product) %>
+  <% if user_signed_in? %>
+    <%= link_to "Write a review", new_product_review_path(@product) %>
+  <% else %>
+    <%= link_to "Please log in to write a review", new_product_review_path(@product) %>
+  <% end %>
   <hr>
   <% @product.reviews.each do |review| %>
   <div class="well">
